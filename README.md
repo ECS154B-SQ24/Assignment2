@@ -22,9 +22,9 @@ If you start the assignment 2 before the assignment 1 late due date, you can reu
 
 The GitHub Classroom page for the class is located at [https://github.com/ECS154B-SQ24](https://github.com/ECS154B-SQ24)
 
-The assignment 2 template repo is located at [https://github.com/ECS154B-SQ23/Assignment2](https://github.com/ECS154B-SQ23/Assignment2)
+The assignment 2 template repo is located at [https://github.com/ECS154B-SQ24/Assignment2](https://github.com/ECS154B-SQ24/Assignment2)
 
-Follow the following link to access assignment 2: [https://classroom.github.com/a/FCe_8fqZ](https://classroom.github.com/a/FCe_8fqZ)
+Follow the following link to access assignment 2: [https://classroom.github.com/a/CVKUuoI2](https://classroom.github.com/a/CVKUuoI2)
 
 The above link will automatically create a repo in the GitHub Classroom page that only you have the access to.
 
