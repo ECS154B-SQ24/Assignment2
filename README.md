@@ -36,7 +36,7 @@ In the event that the template repo is updated, your own repo won’t be automat
 Apptainer is installed on most CSIF machines. So, if you are using one of the
 CSIF machines either locally or remotely, things should just work. However, if
 you run into any problems, post on
-[Piazza](https://piazza.com/class/let902t7oig1lr) or come to office hours.
+[Piazza](https://piazza.com/class/luhhz7vcascf5/) or come to office hours.
 
 To run the dinocpu container using apptainer, run the following command in the
 dinocpu folder,
@@ -93,7 +93,7 @@ du -sh ?
 ```
 
 Let us know if you would like more details on this method via
-[Piazza](https://piazza.com/class/let902t7oig1lr).
+[Piazza](https://piazza.com/class/luhhz7vcascf5/).
 
 ## How this assignment is written
 
@@ -896,12 +896,12 @@ this class.
 
 * Start early! There is a steep learning curve for Chisel, so start early and ask questions on Discord and in discussion.
 * If you need help, come to office hours for the TAs, or post your questions on Piazza.
-* See [common errors](https://github.com/ECS154B-WQ23/dinocpu-assignment1/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+* See [common errors](https://github.com/ECS154B-SQ24/Assignment1/blob/main/documentation/common-errors.md) for some common errors and their solutions.
 
 ## Single stepper
 
-You can also use the [single stepper](https://github.com/ECS154B-WQ23/dinocpu-assignment1/blob/main/documentation/single-stepping.md) to step through the execution one cycle at a time and print information as you go.
-Details on how to use the single stepper can be found in the [documentation](https://github.com/ECS154B-WQ23/dinocpu-assignment1/blob/main/documentation/single-stepping.md).
+You can also use the [single stepper](https://github.com/ECS154B-SQ24/Assignment1/blob/main/documentation/single-stepping.md) to step through the execution one cycle at a time and print information as you go.
+Details on how to use the single stepper can be found in the [documentation](https://github.com/ECS154B-SQ24/Assignment1/blob/main/documentation/single-stepping.md).
 
 ## `printf` debugging
 
