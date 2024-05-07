@@ -409,50 +409,41 @@ Then you can add the appropriate MUXes to the CPU (in `cpu.scala`) and wire the 
 
 In this section, you will (likely) also have to update your ALU control unit.
 In assignment 1, we ignored the `aluop` and `itype` inputs on the ALU control unit.
-Now that we are running the I-type instructions, we have to make sure that when we're executing I-type instructions the ALU control unit ignores the `funct7` bits.
-For I-type instructions, these bits are part of the immediate field!
+Now that we are running the I-type instructions, we have to make sure that when we're executing I-type instructions in the ALU control unit.
 For an ADDI instruction as shown below, it will perform the following operation: R[rd] = R[rs1] + sext(imm)
 
-| **31–20 |	19–15 | 14–12  |11–7|6–0**  |           |
-|---------|-------|--------|----|-------|-----------|
-|   imm   |  rs1  |	funct3 | rd | opcode|  I-type	  |
-|   imm   |	 rs1  |	000    | rd |  OP   | ADDI   	  |
-|   imm   |	 rs1  |	111    | rd |  OP   | ANDI   	  |
-|   imm   |	 rs1  |	110    | rd |  OP   | ORI   	  |
-|   imm   |	 rs1  |	100    | rd |  OP   | XORI   	  |
-|   imm   |	 rs1  |	010    | rd |  OP   | SLTI   	  |
-|   imm   |	 rs1  |	011    | rd |  OP   | SLTIU 	  |
+Like you access rs1 as "registers.io.readdata1", you can access the immediate value as "immGen.io.sextImm" based on the immGen class.
 
-| **31–25|   24–20 |	19–15 | 14–12  |11–7|6–0**  |           |
-|--------|---------|--------|--------|----|-------|-----------|
-| funct7 |   imm   |	rs1   |	funct3 | rd | opcode|  I-type	  |
-| 0100000|	 imm   |	rs1   |  101   | rd |  OP   |  SRAI     |
-| 0000000|	 imm   |	rs1   |  101   | rd |  OP   |  SRLI     |
-| 0000000|	 imm   |	rs1   |  001   | rd |  OP   |  SLLI     |
+| **31–20   |	19–15 | 14–12  |11–7|6–0**  |           |
+|-----------|-------|--------|----|-------|-----------|
+| imm[11:0] |  rs1  |	funct3 | rd | opcode|  I-type	  |
+|   imm     |	 rs1  |	000    | rd |  OP   | ADDI   	  |
+|   imm     |	 rs1  |	111    | rd |  OP   | ANDI   	  |
+|   imm     |	 rs1  |	110    | rd |  OP   | ORI   	  |
+|   imm     |	 rs1  |	100    | rd |  OP   | XORI   	  |
+|   imm     |	 rs1  |	010    | rd |  OP   | SLTI   	  |
+|   imm     |	 rs1  |	011    | rd |  OP   | SLTIU 	  |
 
-
-| **31–20 |	19–15 | 14–12  |11–7|6–0**  |           |
-|---------|-------|--------|----|-------|-----------|
-|   imm   |  rs1  |	funct3 | rd | opcode|  I-type	  |
-|   imm   |	 rs1  |	000    | rd |  OP-32| ADDIW  	  |
-
-| **31–25|   24–20 |	19–15 | 14–12  |11–7|6–0**  |           |
-|--------|---------|--------|--------|----|-------|-----------|
-| funct7 |   imm   |	rs1   |	funct3 | rd | opcode|  I-type	  |
-| 0100000|	 imm   |	rs1   |  101   | rd |  OP-32|  SRAIW    |
-| 0000000|	 imm   |	rs1   |  101   | rd |  OP-32|  SRLIW    |
-| 0000000|	 imm   |	rs1   |  001   | rd |  OP-32|  SLLIW    |
+| **31–25   |   24–20 |	19–15 | 14–12  |11–7|6–0**  |           |
+|-----------|---------|-------|--------|----|-------|-----------|
+| imm[11:5] | imm[4:0]|	rs1   |	funct3 | rd | opcode|  I-type	  |
+| 0100000   |	 imm    |	rs1   |  101   | rd |  OP   |  SRAI     |
+| 0000000   |	 imm    |	rs1   |  101   | rd |  OP   |  SRLI     |
+| 0000000   |	 imm    |	rs1   |  001   | rd |  OP   |  SLLI     |
 
 
+| **31–20    |	19–15 | 14–12  |11–7|6–0**  |          |
+|------------|-------|--------|----|-------|-----------|
+| imm[11:0]  |  rs1  |	funct3| rd | opcode|  I-type	 |
+|   imm      |	 rs1 |	000   | rd |  OP-32| ADDIW  	 |
 
-### I-type instruction details
-
-The following table shows how an I-type instruction is laid out:
-
-|31-20      | 19-15 | 14-12  | 11-7 | 6-0     | Name   |
-|-----------|-------|--------|------|---------|--------|
-| imm[11:0] | rs1   | funct3 | rd   | 0010011 | I-type |
-| imm[11:0] | rs1   | funct3 | rd   | 0011011 | I-type |
+| **31–25  |   24–20 |	19–15 | 14–12   |11–7|6–0**  |           |
+|----------|---------|--------|-------- |----|-------|-----------|
+| imm[11:5]|   imm   |	rs1   |	imm[4:0]| rd | opcode|  I-type	 |
+| 0100000  |	 imm   |	rs1   |  101    | rd |  OP-32|  SRAIW    |
+| 0000000  |	 imm   |	rs1   |  101    | rd |  OP-32|  SRLIW    |
+| 0000000  |	 imm   |	rs1   |  001    | rd |  OP-32|  SLLIW    |
+ 
 
 Each instruction has the following effect.
 `<op>` is specified by the `funct3` field.
