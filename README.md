@@ -411,6 +411,39 @@ In this section, you will (likely) also have to update your ALU control unit.
 In assignment 1, we ignored the `aluop` and `itype` inputs on the ALU control unit.
 Now that we are running the I-type instructions, we have to make sure that when we're executing I-type instructions the ALU control unit ignores the `funct7` bits.
 For I-type instructions, these bits are part of the immediate field!
+For an ADDI instruction as shown below, it will perform the following operation: R[rd] = R[rs1] + sext(imm)
+
+| **31–20 |	19–15 | 14–12  |11–7|6–0**  |           |
+|---------|-------|--------|----|-------|-----------|
+|   imm   |  rs1  |	funct3 | rd | opcode|  I-type	  |
+|   imm   |	 rs1  |	000    | rd |  OP   | ADDI   	  |
+|   imm   |	 rs1  |	111    | rd |  OP   | ANDI   	  |
+|   imm   |	 rs1  |	110    | rd |  OP   | ORI   	  |
+|   imm   |	 rs1  |	100    | rd |  OP   | XORI   	  |
+|   imm   |	 rs1  |	010    | rd |  OP   | SLTI   	  |
+|   imm   |	 rs1  |	011    | rd |  OP   | SLTIU 	  |
+
+| **31–25|   24–20 |	19–15 | 14–12  |11–7|6–0**  |           |
+|--------|---------|--------|--------|----|-------|-----------|
+| funct7 |   imm   |	rs1   |	funct3 | rd | opcode|  I-type	  |
+| 0100000|	 imm   |	rs1   |  101   | rd |  OP   |  SRAI     |
+| 0000000|	 imm   |	rs1   |  101   | rd |  OP   |  SRLI     |
+| 0000000|	 imm   |	rs1   |  001   | rd |  OP   |  SLLI     |
+
+
+| **31–20 |	19–15 | 14–12  |11–7|6–0**  |           |
+|---------|-------|--------|----|-------|-----------|
+|   imm   |  rs1  |	funct3 | rd | opcode|  I-type	  |
+|   imm   |	 rs1  |	000    | rd |  OP-32| ADDIW  	  |
+
+| **31–25|   24–20 |	19–15 | 14–12  |11–7|6–0**  |           |
+|--------|---------|--------|--------|----|-------|-----------|
+| funct7 |   imm   |	rs1   |	funct3 | rd | opcode|  I-type	  |
+| 0100000|	 imm   |	rs1   |  101   | rd |  OP-32|  SRAIW    |
+| 0000000|	 imm   |	rs1   |  101   | rd |  OP-32|  SRLIW    |
+| 0000000|	 imm   |	rs1   |  001   | rd |  OP-32|  SLLIW    |
+
+
 
 ### I-type instruction details
 
