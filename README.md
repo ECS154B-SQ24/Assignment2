@@ -435,14 +435,14 @@ Like you access rs1 as "registers.io.readdata1", you can access the immediate va
 | **31–20    |	19–15 | 14–12  |11–7|6–0**  |          |
 |------------|-------|--------|----|-------|-----------|
 | imm[11:0]  |  rs1  |	funct3| rd | opcode|  I-type	 |
-|   imm      |	 rs1 |	000   | rd |  OP-32| ADDIW  	 |
+|   imm      |	rs1  |	000   | rd |  OP-32| ADDIW  	 |
 
-| **31–25  |   24–20 |	19–15 | 14–12   |11–7|6–0**  |           |
-|----------|---------|--------|-------- |----|-------|-----------|
-| imm[11:5]|   imm   |	rs1   |	imm[4:0]| rd | opcode|  I-type	 |
-| 0100000  |	 imm   |	rs1   |  101    | rd |  OP-32|  SRAIW    |
-| 0000000  |	 imm   |	rs1   |  101    | rd |  OP-32|  SRLIW    |
-| 0000000  |	 imm   |	rs1   |  001    | rd |  OP-32|  SLLIW    |
+| **31–25  |   24–20 |	19–15 | 14–12 |11–7|6–0**  |           |
+|----------|---------|--------|-------|----|-------|-----------|
+| imm[11:5]| imm[4:0]|	rs1   |	funct3| rd | opcode|  I-type	 |
+| 0100000  |	 imm   |	rs1   |  101  | rd |  OP-32|  SRAIW    |
+| 0000000  |	 imm   |	rs1   |  101  | rd |  OP-32|  SRLIW    |
+| 0000000  |	 imm   |	rs1   |  001  | rd |  OP-32|  SLLIW    |
  
 
 Each instruction has the following effect.
